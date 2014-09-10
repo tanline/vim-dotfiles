@@ -2,7 +2,8 @@ set nocompatible
 set hidden
 filetype off
 filetype plugin indent off
-set runtimepath+=/usr/local/go/misc/vim "required for Go lang plugins
+" set the runtime path to include Vundle and initialize
+set runtimepath+=~/.vim/bundle/Vundle.vim
 filetype plugin indent on  "required for vundle
 
 "Color Scheme
