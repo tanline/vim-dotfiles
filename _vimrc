@@ -5,6 +5,30 @@ filetype plugin indent off
 " set the runtime path to include Vundle and initialize
 set runtimepath+=~/.vim/bundle/Vundle.vim
 filetype plugin indent on  "required for vundle
+" set mapleader
+let mapleader=","
+
+"Vundle settings
+""""""""""""""""
+"see :h vundle for more details or wiki for FAQ
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+
+"let Vundle manage Vundle (required)
+Plugin 'gmarik/vundle'
+
+"original repos on github
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
+Plugin 'bling/vim-airline'
+Plugin 'tomasr/molokai'
+Plugin 'nathanaelkane/vim-indent-guides'
+
+"non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+
+call vundle#end()
 
 "Color Scheme
 """""""""""""
@@ -30,20 +54,6 @@ set ruler
 set number
 set scrolloff=10
 
-"Status Line
-"""""""""""""""""""
-set statusline=%t
-set statusline+=%m
-set statusline+=%c,
-set statusline+=%l/%L
-set statusline+=\ %P
-set statusline+=%{fugitive#statusline()}
-
-"Line Numbers
-"switches between relative and absolute depending on the mode that you're in
-"originaly found at https://gist.github.com/3012145
-"""""""""""""""""""
-
 "Tabs and Indenting
 """""""""""""""""""
 set smartindent
@@ -54,49 +64,20 @@ set expandtab
 "Key Bindings
 """"""""""""""
 "Shortcut to _vimrc
-nmap <silent> ,rc :sp $MYVIMRC<cr>
+nmap <silent> <leader>rc :sp $MYVIMRC<cr>
 "Shortcut to open NERDTree
-nmap <silent> ,nt :NERDTree<cr>
+nmap <silent> <leader>nt :NERDTree<cr>
 "Shortcut to clear highlighted words
-nmap <silent> ,, :let @/ = ""<cr>
+nmap <silent> <leader>, :let @/ = ""<cr>
 
-"Vundle settings
-""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
+"vim-airline settings
+"""""""""""""""""""""
+let g:airline_powerline_fonts = 1
 
-"let Vundle manage Vundle (required)
-Plugin 'gmarik/vundle'
-
-"original repos on github
-Plugin 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-
-"vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-
-"non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-
-"Brief help
-":BundleList          - list configured bundles
-":BundleInstall(!)    - install(update) bundles
-":BundleSearch(!) foo - search(or refresh cache first) for foo
-":BundleClean(!)      - confirm(or auto-approve) removal of unsused bundles
-"see :h vundle for more details or wiki for FAQ
-
-call vundle#end()
-
-"
-" Highlight any text that goes over 80 characters in a line
+"Highlight any text that goes over 80 characters in a line
+""""""""""""""""""""""""""""""""""""""""""
 "highlight Overlength ctermbg=DarkRed ctermfg=white guibg=#592929
 "match Overlength /\%81v.\+/
-
 
 " Show trailing whitespace as a red highlight
 highlight ExtraWhitespace ctermbg=red guibg=red
