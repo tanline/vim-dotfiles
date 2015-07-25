@@ -33,7 +33,7 @@ call vundle#end()
 "Color Scheme
 """""""""""""
 set t_Co=256
-if v:version > 703
+if has('gui_running')
     set transparency=5
 endif
 colorscheme molokai
