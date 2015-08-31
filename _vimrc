@@ -20,6 +20,7 @@ Plugin 'gmarik/vundle'
 "original repos on github
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
 Plugin 'tomasr/molokai'
@@ -74,10 +75,24 @@ nmap <silent> <leader>, :let @/ = ""<cr>
 """""""""""""""""""""
 let g:airline_powerline_fonts = 1
 
+"syntastic settings
+"""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting = 1
+let b:syntastic_mode = "passive"
+let g:syntastic_mode_map = { "mode": "passive" }
+
 "Highlight any text that goes over 80 characters in a line
 """"""""""""""""""""""""""""""""""""""""""
-"highlight Overlength ctermbg=DarkRed ctermfg=white guibg=#592929
-"match Overlength /\%81v.\+/
+highlight Overlength ctermbg=DarkRed ctermfg=white guibg=#592929
+match Overlength /\%81v.\+/
 
 " Show trailing whitespace as a red highlight
 highlight ExtraWhitespace ctermbg=red guibg=red
