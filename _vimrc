@@ -1,7 +1,6 @@
 set nocompatible
 set hidden
 filetype off
-filetype plugin indent off
 " set the runtime path to include Vundle and initialize
 set runtimepath+=~/.vim/bundle/Vundle.vim
 filetype plugin indent on  "required for vundle
@@ -27,6 +26,7 @@ Plugin 'tomasr/molokai'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-rails'
+Plugin 'christoomey/vim-tmux-navigator'
 
 "non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -76,7 +76,13 @@ nmap <silent> <leader>, :let @/ = ""<cr>
 "lightline settings
 """""""""""""""""""""
 let g:lightline = {
-      \ 'colorscheme': 'solarized'
+      \ 'colorscheme': 'solarized',
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag'
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error'
+      \ }
       \ }
 
 function! LightLineMode()
@@ -105,13 +111,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 1
 "let b:syntastic_mode = "passive"
 "let g:syntastic_mode_map = { "mode": "passive" }
-let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-
-"Highlight any text that goes over 80 characters in a line
-""""""""""""""""""""""""""""""""""""""""""
-highlight Overlength ctermbg=DarkRed ctermfg=white guibg=#592929
-match Overlength /\%81v.\+/
 
 " Show trailing whitespace as a red highlight
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -124,6 +124,10 @@ autocmd BufWinLeave * call clearmatches()
 function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
+
+" Do not replace item that has been pasted with item that was pasted over
+" (e.g. do not change paste register with new value when pasting)
+xnoremap p "_dP"
 
 "Wildmenu settings (a bar to help with autcomplete of filenames)
 """"""""""""""""""""""""""""""""""""""""""
