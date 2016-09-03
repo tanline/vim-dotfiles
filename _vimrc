@@ -98,6 +98,15 @@ function! LightLineMode()
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
+"nerdtree settings
+"""""""""""""""""""""
+let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+"close vim if nerdtree is the last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "syntastic settings
 """""""""""""""""""""
 set statusline+=%#warningmsg#
