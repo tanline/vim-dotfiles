@@ -27,6 +27,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 "non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -121,6 +122,7 @@ let g:syntastic_enable_highlighting = 1
 "let b:syntastic_mode = "passive"
 "let g:syntastic_mode_map = { "mode": "passive" }
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_python_checkers = ['pylint']
 
 " Show trailing whitespace as a red highlight
 highlight ExtraWhitespace ctermbg=red guibg=red
