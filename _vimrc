@@ -1,14 +1,12 @@
 set nocompatible
 set hidden
-filetype off
-" set the runtime path to include Vundle and initialize
-set runtimepath+=~/.vim/bundle/Vundle.vim
-filetype plugin indent on  "required for vundle
+
 " set mapleader
 let mapleader=","
 
 "Vundle settings
 """"""""""""""""
+filetype off
 "see :h vundle for more details or wiki for FAQ
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -27,12 +25,13 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 "non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 
 call vundle#end()
+filetype plugin indent on
 
 "Color Scheme
 """""""""""""
