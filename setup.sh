@@ -4,25 +4,23 @@
 # create a symlink to _vimrc from your root directory as .vimrc
 
 script_dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
-vundle_path="$script_dir/bundle/Vundle.vim"
+plug_path="$script_dir/autoload/plug.vim"
 vimrc_path="$script_dir/_vimrc"
 
-echo "Starting setup..."
+printf "Starting setup...\n\n"
 
-mkdir -p bundle
-
-if cd $vundle_path; then
-  echo "Vundle already exists...skipping cloning of Vundle..."
+printf "Cloning Plug...\n"
+if [ -e $plug_path ] || [ -L $plug_path ]; then
+  printf "Plug already installed. Use :PluginUpgrade in vim to update.\n"
 else
-  echo "Cloning Vundle..."
-  git clone https://github.com/VundleVim/Vundle.vim $vundle_path
+  curl -fLo $plug_path --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+printf "\nCreating vimrc symlink...\n"
 if [ -e ~/.vimrc ] || [ -L ~/.vimrc ]; then
-  echo "~/.vimrc already exits...skipping symlink creation..."
+  printf "~/.vimrc already exits...skipping symlink creation...\n"
 else
   ln -s $vimrc_path ~/.vimrc
 fi
 
-echo "...Setup complete!"
-
+printf "\nSetup complete!\n"

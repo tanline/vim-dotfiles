@@ -2,4 +2,4 @@
 
 My personal .vim folder.
 
-Plugins managed using [vundle](http://github.com/gmarik/vundle)
+Plugins managed using [vim-plug](https://github.com/junegunn/vim-plug)

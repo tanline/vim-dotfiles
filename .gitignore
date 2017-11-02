@@ -1,2 +1,5 @@
 .DS_Store
-bundle/*
+
+# Ignore vim-plug related folders
+autoload/*
+plugged/*

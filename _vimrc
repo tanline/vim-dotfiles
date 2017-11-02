@@ -1,38 +1,33 @@
 set nocompatible
 set hidden
-filetype off
-" set the runtime path to include Vundle and initialize
-set runtimepath+=~/.vim/bundle/Vundle.vim
-filetype plugin indent on  "required for vundle
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
+
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+"Tmux
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
+Plug 'jgdavey/vim-turbux'
+
+"Color schemes
+Plug 'tomasr/molokai'
+Plug 'junegunn/seoul256.vim'
+
+"Calling plug#end automatically executes `filetype plugin indent on` and `syntax enable`
+call plug#end()
+
 " set mapleader
 let mapleader=","
-
-"Vundle settings
-""""""""""""""""
-"see :h vundle for more details or wiki for FAQ
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-"let Vundle manage Vundle (required)
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'gmarik/vundle'
-
-"original repos on github
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'ervandew/supertab'
-Plugin 'tomasr/molokai'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-rails'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ctrlpvim/ctrlp.vim'
-
-"non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-
-call vundle#end()
 
 "Color Scheme
 """""""""""""
@@ -41,9 +36,10 @@ if has('gui_running')
     set transparency=5
 endif
 colorscheme molokai
-let g:molokai_original = 1
+let g:molokai_original=1
 
-syntax on "syntax highlighting
+let g:airline_theme='wombat'
+
 set lazyredraw
 set showmode
 set showmatch
@@ -74,31 +70,6 @@ nmap <silent> <leader>nt :NERDTree<cr>
 "Shortcut to clear highlighted words
 nmap <silent> <leader>, :let @/ = ""<cr>
 
-"lightline settings
-"""""""""""""""""""""
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag'
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error'
-      \ }
-      \ }
-
-function! LightLineMode()
-  let fname = expand('%:t')
-  return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
 "nerdtree settings
 """""""""""""""""""""
 let NERDTreeIgnore = ['\.pyc$']
@@ -106,7 +77,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 "close vim if nerdtree is the last window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "syntastic settings
 """""""""""""""""""""
@@ -145,5 +116,6 @@ xnoremap p "_dP"
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png
+
 
 autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre :call TrimWhiteSpace()
