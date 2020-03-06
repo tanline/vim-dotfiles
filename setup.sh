@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This setup file will clone the Vundle vim plugin as well as
+# This setup file will clone the Vim-Plug plugin as well as
 # create a symlink to _vimrc from your root directory as .vimrc
 
 script_dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
