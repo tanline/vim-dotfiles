@@ -3,3 +3,7 @@
 # Ignore vim-plug related folders
 autoload/*
 plugged/*
+
+# Ignore vim related files
+*.swp
+.netrwhist
